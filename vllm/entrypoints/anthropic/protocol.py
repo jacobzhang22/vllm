@@ -113,6 +113,13 @@ class AnthropicMessagesRequest(BaseModel):
     top_p: float | None = None
 
     # vLLM-specific fields that are not in Anthropic spec
+    chat_template_kwargs: dict[str, Any] | None = Field(
+        default=None,
+        description=(
+            "Additional keyword args to pass to the template renderer. "
+            "Will be accessible by the chat template."
+        ),
+    )
     kv_transfer_params: dict[str, Any] | None = Field(
         default=None,
         description="KVTransfer parameters used for disaggregated serving.",
@@ -211,6 +218,13 @@ class AnthropicCountTokensRequest(BaseModel):
     system: str | list[AnthropicContentBlock] | None = None
     tool_choice: AnthropicToolChoice | None = None
     tools: list[AnthropicTool] | None = None
+    chat_template_kwargs: dict[str, Any] | None = Field(
+        default=None,
+        description=(
+            "Additional keyword args to pass to the template renderer. "
+            "Will be accessible by the chat template."
+        ),
+    )
 
     @field_validator("model")
     @classmethod

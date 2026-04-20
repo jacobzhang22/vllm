@@ -322,6 +322,7 @@ class AnthropicServingMessages(OpenAIServingChat):
             return ChatCompletionRequest(
                 model=anthropic_request.model,
                 messages=openai_messages,
+                chat_template_kwargs=anthropic_request.chat_template_kwargs,
             )
 
         return ChatCompletionRequest(
@@ -333,6 +334,7 @@ class AnthropicServingMessages(OpenAIServingChat):
             temperature=anthropic_request.temperature,
             top_p=anthropic_request.top_p,
             top_k=anthropic_request.top_k,
+            chat_template_kwargs=anthropic_request.chat_template_kwargs,
             kv_transfer_params=anthropic_request.kv_transfer_params,
         )
 
